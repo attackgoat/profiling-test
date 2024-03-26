@@ -5,6 +5,7 @@ edition = "2021"
 
 [features]
 default = []
+profile-with-puffin = ["child-lib/profile-with-puffin"]
 
 [build-dependencies]
 child-lib = { path = "../child-lib" }

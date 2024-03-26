@@ -6,6 +6,7 @@ edition = "2021"
 [features]
 default = []
 profile-with-puffin = [
+    "foo-lib/profile-with-puffin",
     "bar-lib/profile-with-puffin"
 ]
 
