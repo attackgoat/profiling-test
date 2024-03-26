@@ -1,0 +1,14 @@
+[package]
+name = "my-bin"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = []
+profile-with-puffin = [
+    "bar-lib/profile-with-puffin"
+]
+
+[dependencies]
+foo-lib = { path = "../foo-lib" }
+bar-lib = { path = "../bar-lib" }

@@ -1,0 +1,11 @@
+[package]
+name = "child-lib"
+version = "0.1.0"
+edition = "2021"
+
+[features]
+default = []
+profile-with-puffin = ["profiling/profile-with-puffin"]
+
+[dependencies]
+profiling = { version = "1.0" }
