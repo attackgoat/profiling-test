@@ -8,4 +8,4 @@ default = []
 profile-with-puffin = ["profiling/profile-with-puffin"]
 
 [dependencies]
-profiling = "1.0"
+profiling = { path = "../profiling" }
