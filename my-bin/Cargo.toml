@@ -8,6 +8,18 @@ default = []
 profile-with-puffin = [
     "bar-lib/profile-with-puffin"
 ]
+profile-with-optick = [
+    "bar-lib/profile-with-optick"
+]
+profile-with-superluminal = [
+    "bar-lib/profile-with-superluminal"
+]
+profile-with-tracing = [
+    "bar-lib/profile-with-tracing"
+]
+profile-with-tracy = [
+    "bar-lib/profile-with-tracy"
+]
 
 [dependencies]
 foo-lib = { path = "../foo-lib" }
