@@ -106,6 +106,13 @@ mod puffin_impl;
 #[cfg(feature = "profile-with-puffin")]
 #[allow(unused_imports)]
 pub use puffin_impl::*;
+#[cfg(not(feature = "profile-with-puffin"))]
+#[doc(hidden)]
+pub mod puffin_mock;
+#[cfg(not(feature = "profile-with-puffin"))]
+#[doc(hidden)]
+#[allow(unused_imports)]
+pub use puffin_mock as puffin;
 
 #[cfg(feature = "profile-with-optick")]
 pub use optick;
@@ -114,6 +121,13 @@ mod optick_impl;
 #[cfg(feature = "profile-with-optick")]
 #[allow(unused_imports)]
 pub use optick_impl::*;
+#[cfg(not(feature = "profile-with-optick"))]
+#[doc(hidden)]
+pub mod optick_mock;
+#[cfg(not(feature = "profile-with-optick"))]
+#[doc(hidden)]
+#[allow(unused_imports)]
+pub use optick_mock as optick;
 
 #[cfg(feature = "profile-with-superluminal")]
 pub use superluminal_perf;
@@ -122,6 +136,13 @@ mod superluminal_impl;
 #[cfg(feature = "profile-with-superluminal")]
 #[allow(unused_imports)]
 pub use superluminal_impl::*;
+#[cfg(not(feature = "profile-with-superluminal"))]
+#[doc(hidden)]
+pub mod superluminal_mock;
+#[cfg(not(feature = "profile-with-superluminal"))]
+#[doc(hidden)]
+#[allow(unused_imports)]
+pub use superluminal_mock as superluminal;
 
 #[cfg(feature = "profile-with-tracing")]
 pub use tracing;
@@ -130,6 +151,12 @@ mod tracing_impl;
 #[cfg(feature = "profile-with-tracing")]
 #[allow(unused_imports)]
 pub use tracing_impl::*;
+#[cfg(not(feature = "profile-with-tracing"))]
+#[doc(hidden)]
+pub mod tracing_mock;
+#[cfg(not(feature = "profile-with-tracing"))]
+#[doc(hidden)]
+pub use tracing_mock as tracing;
 
 #[cfg(feature = "profile-with-tracy")]
 pub use tracy_client;
@@ -138,6 +165,12 @@ mod tracy_impl;
 #[cfg(feature = "profile-with-tracy")]
 #[allow(unused_imports)]
 pub use tracy_impl::*;
+#[cfg(not(feature = "profile-with-tracy"))]
+#[doc(hidden)]
+pub mod tracy_mock;
+#[cfg(not(feature = "profile-with-tracy"))]
+#[doc(hidden)]
+pub use tracy_mock as tracy_client;
 
 #[cfg(feature = "type-check")]
 mod type_check_impl;

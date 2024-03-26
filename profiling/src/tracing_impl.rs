@@ -20,3 +20,11 @@ macro_rules! register_thread {
 macro_rules! finish_frame {
     () => {};
 }
+
+#[doc(hidden)]
+#[macro_export]
+macro_rules! tracing_span {
+    ($level:expr, $name:expr) => {
+        $crate::tracing::span!($level, $name)
+    };
+}

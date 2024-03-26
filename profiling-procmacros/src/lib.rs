@@ -87,90 +87,25 @@ pub fn all_functions(
     .into()
 }
 
-#[cfg(not(any(
-    feature = "profile-with-puffin",
-    feature = "profile-with-optick",
-    feature = "profile-with-superluminal",
-    feature = "profile-with-tracing",
-    feature = "profile-with-tracy"
-)))]
-fn impl_block(
-    body: &syn::Block,
-    _instrumented_function_name: &str,
-) -> syn::Block {
+fn impl_block(body: &syn::Block, instrumented_function_name: &str) -> syn::Block {
     parse_quote! {
         {
-            #body
-        }
-    }
-}
-
-#[cfg(feature = "profile-with-puffin")]
-fn impl_block(
-    body: &syn::Block,
-    _instrumented_function_name: &str,
-) -> syn::Block {
-    parse_quote! {
-        {
+            // Puffin
             profiling::puffin::profile_function!();
 
-            #body
-        }
-    }
-}
-
-#[cfg(feature = "profile-with-optick")]
-fn impl_block(
-    body: &syn::Block,
-    _instrumented_function_name: &str,
-) -> syn::Block {
-    parse_quote! {
-        {
+            // Optick
             profiling::optick::event!();
 
-            #body
-        }
-    }
-}
-
-#[cfg(feature = "profile-with-superluminal")]
-fn impl_block(
-    body: &syn::Block,
-    instrumented_function_name: &str,
-) -> syn::Block {
-    parse_quote! {
-        {
+            // Superluminal
             let _superluminal_guard = profiling::superluminal::SuperluminalGuard::new(#instrumented_function_name);
 
-            #body
-        }
-    }
-}
-
-#[cfg(feature = "profile-with-tracing")]
-fn impl_block(
-    body: &syn::Block,
-    instrumented_function_name: &str,
-) -> syn::Block {
-    parse_quote! {
-        {
-            let _fn_span = profiling::tracing::span!(profiling::tracing::Level::INFO, #instrumented_function_name);
+            // Tracing
+            let _fn_span = profiling::tracing_span!(profiling::tracing::Level::INFO, #instrumented_function_name);
             let _fn_span_entered = _fn_span.enter();
 
-            #body
-        }
-    }
-}
-
-#[cfg(feature = "profile-with-tracy")]
-fn impl_block(
-    body: &syn::Block,
-    instrumented_function_name: &str,
-) -> syn::Block {
-    parse_quote! {
-        {
+            // Tracy
             // Note: callstack_depth is 0 since this has significant overhead
-            let _tracy_span = profiling::tracy_client::span!(#instrumented_function_name, 0);
+            let _tracy_span = profiling::tracy_span!(#instrumented_function_name, 0);
 
             #body
         }

@@ -66,3 +66,11 @@ macro_rules! finish_frame {
             .frame_mark();
     };
 }
+
+#[doc(hidden)]
+#[macro_export]
+macro_rules! tracy_span {
+    ($name:expr, $callstack_depth:expr) => {
+        $crate::tracy_client::span!($name, $callstack_depth)
+    };
+}

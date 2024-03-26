@@ -48,10 +48,7 @@ pub mod superluminal {
             SuperluminalGuard
         }
 
-        pub fn new_with_data(
-            name: &str,
-            data: &str,
-        ) -> Self {
+        pub fn new_with_data(name: &str, data: &str) -> Self {
             superluminal_perf::begin_event_with_data(name, data, DEFAULT_SUPERLUMINAL_COLOR);
             SuperluminalGuard
         }
